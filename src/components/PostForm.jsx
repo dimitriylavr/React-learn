@@ -1,14 +1,17 @@
-import React from "react";
-import MyButton from "./components/UI/button/MyButton";
-import MyInput from "./components/UI/input/MyInput";
+import React, {useState } from "react";
+import MyButton from "./UI/button/MyButton";
+import MyInput from "./UI/input/MyInput";
 
-const PostForm = () => {
+const PostForm = ({create}) => {
     const [post, setPost] = useState({ title: '', body: '' });
 
     const addNewPost = (e) => {
         e.preventDefault();
-        setPosts([...posts, { ...post, id: Date.now() }]);
-        setPost({ title: '', body: '' })
+        const newPost={
+            ...post, id: Date.now()
+        };
+        create(newPost);
+        setPost({ title: '', body: '' });
       };
       
     return (
