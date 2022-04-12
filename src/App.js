@@ -4,6 +4,7 @@ import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
 import MyInput from "./components/UI/input/MyInput";
 import MySelect from "./components/UI/select/MySelect";
+import MyButton from "./components/UI/button/MyButton";
 
 
 function App() {
@@ -12,8 +13,18 @@ function App() {
     { id: 2, title: 'Python', body: 'это язык программирования!' },
     { id: 3, title: 'Dart', body: 'A Dart - это язык программирования!' },
   ]);
+
+  const [count, setCount] = useState(0);
+
   const [selectedSort, setSelectedSort] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+
+  const onClick = () => {
+    setCount(count => { 
+      return count + 1; 
+    }
+    )
+  }
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
@@ -30,6 +41,8 @@ function App() {
 
   return (
     <div className="App">
+    <MyButton onClick={onClick}> Нажми меня</MyButton>
+    <p>Счётчик:{count}</p>
       <PostForm create={createPost} />
       <div>
         <hr style={{ margin: '15px 0' }} />
